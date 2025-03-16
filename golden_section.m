@@ -10,28 +10,31 @@ gamma = (Pc*(hc^2))/(sigma2);
 V = 1-1/((1+gamma)^2); 
 C = log2(1+gamma); 
 
-Ps1 = 1.2;
-hs1 = 0.15;
+% 感知目标1参数设置
+Ps1 = 1;
+hs1 = 0.1;
 delta1 = 0.0001; % delta1 is the probability of false alarm (PFA) threshold, 1e-5 < delta1 < 1e-3
 
+% 感知目标2参数设置
 Ps2 = 1;
 hs2 = 0.1;
 delta2 = 0.0001;
 
+% 感知和通信错误率阈值
 err_s_th = 0.01;
 err_c_th = 0.01;
 
-% 感知错误率阈值
+% 感知目标1资源阈值
 y = qfuncinv(err_s_th);
 Ls_sqrt = (y*sqrt(2*Ps1*sigma2*(hs1^2))+sqrt((y.^2)*2*Ps1*sigma2*(hs1^2)+4*Ps1*(hs1^2)*sigma2*(-log(delta1))))/(2*Ps1*(hs1^2));
 Ls = ceil(Ls_sqrt.^2);
 ts1_th = Ls*Ts;
-
+% 感知目标2资源阈值
 Ls_sqrt = (y*sqrt(2*Ps2*sigma2*(hs2^2))+sqrt((y.^2)*2*Ps2*sigma2*(hs2^2)+4*Ps2*(hs2^2)*sigma2*(-log(delta2))))/(2*Ps2*(hs2^2));
 Ls = ceil(Ls_sqrt.^2);
 ts2_th = Ls*Ts;
 
-% 通信错误率阈值
+% 通信资源阈值
 y = qfuncinv(err_c_th);
 Lc_sqrt = (y/log(2)+sqrt((y/log(2)).^2+4*C*d/V))/(2*C/sqrt(V));
 Lc = ceil(Lc_sqrt.^2);
