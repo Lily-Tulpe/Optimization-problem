@@ -1,22 +1,19 @@
-%%
-% 定义符号变量
-syms ts1 ts2 tc; 
-
 % 参数初始化
 hs = 0.1;
-hc = 0.5; % hs^2 is the scalar refection coefficient,hr is the channel coefficient,hs<hr<1
+hc = 0.5; % hs^2 is the scalar refection coefficient,hc is the channel coefficient,hs<hr<1
 sigma2 = 0.01; % sigma^2 is the noise power,sigma^2=0.01
 Ps = 1;
-Pc = 1; % Ps is the sensing power,Pr is the communication power,Ps=Pr<1W
+Pc = 1; % Ps is the sensing power,Pc is the communication power,Ps=Pc<1W
 d = 480; % d is the length of packet,d=2^n*10^m
 Ts = 0.02; % Ts is the duration of a single symbol,Ts<1ms,Ts=0.025ms/0.02ms
 Tmax = 5; % Tmax is the total time,Tmax<100ms,Tmax<10ms,Tmax<5ms
 delta = 0.0001; % delta is the probability of false alarm (PFA) threshold,1e-5<delta<1e-3
 
+% 感知和通信错误率阈值
 err_s_th = 0.01;
 err_c_th = 0.01;
 
-n=5;
+n=5; % 采样间隔
 % 感知时间 ts1 相关计算
 ts1 = [Ts:n*Ts:Tmax];
 Ls1 = ts1/Ts;
