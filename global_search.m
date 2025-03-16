@@ -6,14 +6,17 @@ d = 480; % d is the length of packet,d=2^n*10^m
 Ts = 0.02; % Ts is the duration of a single symbol,Ts<1ms,Ts=0.025ms/0.02ms
 Tmax = 5; % Tmax is the total time,Tmax<100ms,Tmax<10ms,Tmax<5ms
 
-hs1 = 0.15;
-Ps1 = 1.2;
+% 感知目标1参数设置
+hs1 = 0.1;
+Ps1 = 1;
 delta1 = 0.0001; % delta is the probability of false alarm (PFA) threshold,1e-5<delta<1e-3
 
+% 感知目标2参数设置
 hs2 = 0.1;
 Ps2 = 1;
 delta2 = 0.0001;
 
+% 感知和通信错误率阈值
 err_s_th = 0.01;
 err_c_th = 0.01;
 
