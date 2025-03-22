@@ -46,7 +46,11 @@ tc(err_c > err_c_th) = NaN;
 [TC, TS1, TS2] = meshgrid(tc, ts1, ts2);
          
 % 筛选出满足 tc + ts1 + ts2 ≤ Tmax 的点
-valid_indices = ~isnan(TC) & ~isnan(TS1) & ~isnan(TS2) & (TC + TS1 + TS2 <= Tmax);
+%valid_indices = ~isnan(TC) & ~isnan(TS1) & ~isnan(TS2) & (TC + TS1 + TS2 <= Tmax); %Yao: 浮点运算怎么能用绝对值。。。
+
+epsilon = 1e-10; 
+valid_indices = ~isnan(TC) & ~isnan(TS1) & ~isnan(TS2) & (TC + TS1 + TS2 <= Tmax + epsilon);
+
 
 % 提取可行域的点
 valid_tc = TC(valid_indices);
